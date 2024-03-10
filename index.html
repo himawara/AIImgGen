@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Image Generator</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+      text-align: center;
+    }
+
+    #generator-container {
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 20px;
+    }
+
+    img {
+      max-width: 100%;
+      border-radius: 8px;
+      margin-top: 20px;
+    }
+
+    button {
+      background-color: blue;
+      color: white;
+      padding: 12px 20px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: skyblue;
+    }
+  </style>
+</head>
+<body>
+
+<div id="generator-container">
+  <h2 style="color: blue;">AI Image Generator</h2>
+  <p>Click the button below to generate an AI-generated image:</p>
+  <button onclick="generateImage()">Generate Image</button>
+  <img id="generatedImage" alt="Generated Image">
+</div>
+
+<script>
+  function generateImage() {
+    var apiUrl = 'https://api.example.com/generate-image';
+
+    fetch(apiUrl)
+      .then(response => response.json())
+      .then(data => {
+        var imageUrl = data.imageUrl;
+
+        var generatedImage = document.getElementById('generatedImage');
+        generatedImage.src = imageUrl;
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+        alert('Error generating image. Please try again later.');
+      });
+  }
+</script>
+
+</body>
+</html>
